@@ -22,12 +22,28 @@ class matriz:
             return L
         
         else: #retornando um valor i,j
-            return self.vetor[i-1][j-1]
+            return self.vetor[i-1][j-1] 
      
+    def __getitem__(self,pos):
+        i,j=pos
+        return self.vetor[i-1][j-1]
+    
+    
+    def __setitem__(self,pos,valor):
+        i,j=pos
+        self.vetor[i-1][j-1] = valor
+        
         
     def ordem(self):
         '''Ordem m x n da matriz.'''
         return len(self.vetor),len(self.vetor[0])
+
+
+    def __round__(self,n):
+        for linha in range(len(self.vetor)):
+            for coluna in range(len(self.vetor[0])):
+                self.vetor[linha][coluna]=round(self.vetor[linha][coluna],n)
+        return matriz(self.vetor)    
     
     
     def __add__(self,other):
@@ -71,8 +87,10 @@ class matriz:
     
     def __mul__(self,other):
         if type(self) == matriz and type(other) == matriz:
-            pass
-        
+            if len(self.valor(i=1)) != len(other.valor(j=1)):
+                raise ValueError ('Número de colunas da primeira diferente do número de linhas da segunda')
+            #a continuar
+                
         else:
             def multiplicar(_vetor1,k):
                 '''k*[A,B,C]=[k*A,k*B,k*C]'''
@@ -85,15 +103,17 @@ class matriz:
             for i in range(len(_matriz)):
                 _matriz[i]=multiplicar(_matriz[i],other)
             return matriz(_matriz)
-                
+  
+              
     def __truediv__(self,other):
         if type(self) == matriz and type(other) == matriz:
-            pass
+            pass #a continuar
         
         else:
             def dividir(_vetor1,k):
                 '''[A,B,C]/k=[A/k,B/k,C/k]'''
                 _vetor3=_vetor1.copy()
+                
                 for i in range(len(_vetor3)):
                     _vetor3[i]=_vetor3[i]/k
                 return _vetor3
@@ -103,19 +123,27 @@ class matriz:
                 _matriz[i]=dividir(_matriz[i],other)
             return matriz(_matriz)
         
-    def __round__(self,n):
-        for linha in range(len(self.vetor)):
-            for coluna in range(len(self.vetor[0])):
-                self.vetor[linha][coluna]=round(self.vetor[linha][coluna],n)
-        return matriz(self.vetor)
-                
-    
-            
-            
-            
+
+    def __eq__(self,other):
+        if self.ordem() != other.ordem():
+            return False
+        
+        diferencas=0
+        for i in range(len(self.vetor)):
+            for j in range(len(self.vetor[0])):
+                if self.vetor[i][j] != other.vetor[i][j]:
+                    diferencas+=1
+                    break
+        if diferencas==0:
+            return True
+        else:
+            return False
         
         
-        
-    
-    
+    def T(self): 
+        '''Transpõe a matriz.'''
+        transposta=[]
+        for _ in range(len(self.vetor[0])):
+            transposta.append(self.valor(j=_+1))
+        return matriz(transposta)
     
