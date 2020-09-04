@@ -25,6 +25,7 @@ class matriz:
             return self.vetor[i-1][j-1] 
      
     def __getitem__(self,pos):
+    '''Retorna o item na posição i,j.'''
         i,j=pos
         return self.vetor[i-1][j-1]
     
@@ -49,7 +50,7 @@ class matriz:
     def __add__(self,other):
         '''Retorna a adição de duas matrizes.'''
         
-        def somar(_vetor1,_vetor2):
+        def _somar(_vetor1,_vetor2):
             '''[A,B,C] + [D,E,F]=[A+D,B+E,C+F]'''
             _vetor3=_vetor1.copy()
             for i in range(len(_vetor3)):
@@ -62,13 +63,12 @@ class matriz:
         else:
             _matriz=self.vetor.copy()
             for i in range(len(_matriz)):
-                _matriz[i]=somar(_matriz[i],other.vetor[i])
+                _matriz[i]=_somar(_matriz[i],other.vetor[i])
             return matriz(_matriz)
     
     
     def __sub__(self,other):
-        
-        def subtrair(_vetor1,_vetor2):
+        def _subtrair(_vetor1,_vetor2):
             '''[A,B,C] + [D,E,F]=[A-D,B-E,C-F]'''
             _vetor3=_vetor1.copy()
             for i in range(len(_vetor3)):
@@ -81,7 +81,7 @@ class matriz:
         else:
             _matriz=self.vetor.copy()
             for i in range(len(_matriz)):
-                _matriz[i]=subtrair(_matriz[i],other.vetor[i])
+                _matriz[i]=_subtrair(_matriz[i],other.vetor[i])
             return matriz(_matriz)
     
     
@@ -92,7 +92,7 @@ class matriz:
             #a continuar
                 
         else:
-            def multiplicar(_vetor1,k):
+            def _multiplicar(_vetor1,k):
                 '''k*[A,B,C]=[k*A,k*B,k*C]'''
                 _vetor3=_vetor1.copy()
                 for i in range(len(_vetor3)):
@@ -101,7 +101,7 @@ class matriz:
             
             _matriz=self.vetor.copy()
             for i in range(len(_matriz)):
-                _matriz[i]=multiplicar(_matriz[i],other)
+                _matriz[i]=_multiplicar(_matriz[i],other)
             return matriz(_matriz)
   
               
@@ -110,7 +110,7 @@ class matriz:
             pass #a continuar
         
         else:
-            def dividir(_vetor1,k):
+            def _dividir(_vetor1,k):
                 '''[A,B,C]/k=[A/k,B/k,C/k]'''
                 _vetor3=_vetor1.copy()
                 
@@ -120,7 +120,7 @@ class matriz:
             
             _matriz=self.vetor.copy()
             for i in range(len(_matriz)):
-                _matriz[i]=dividir(_matriz[i],other)
+                _matriz[i]=_dividir(_matriz[i],other)
             return matriz(_matriz)
         
 
@@ -146,4 +146,3 @@ class matriz:
         for _ in range(len(self.vetor[0])):
             transposta.append(self.valor(j=_+1))
         return matriz(transposta)
-    
