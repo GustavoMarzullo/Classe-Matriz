@@ -25,7 +25,7 @@ class matriz:
             return self.vetor[i-1][j-1] 
      
     def __getitem__(self,pos):
-    '''Retorna o item na posição i,j.'''
+        '''Retorna o item na posição i,j.'''
         i,j=pos
         return self.vetor[i-1][j-1]
     
@@ -34,16 +34,16 @@ class matriz:
         i,j=pos
         self.vetor[i-1][j-1] = valor
         
-        
+ 
     def ordem(self):
         '''Ordem m x n da matriz.'''
         return len(self.vetor),len(self.vetor[0])
 
 
     def __round__(self,n):
-        for linha in range(len(self.vetor)):
-            for coluna in range(len(self.vetor[0])):
-                self.vetor[linha][coluna]=round(self.vetor[linha][coluna],n)
+        for i in range(len(self.vetor)):
+            for j in range(len(self.vetor[0])):
+                self.vetor[i][j]=round(self.vetor[i][j],n)
         return matriz(self.vetor)    
     
     
@@ -107,7 +107,7 @@ class matriz:
               
     def __truediv__(self,other):
         if type(self) == matriz and type(other) == matriz:
-            pass #a continuar
+            pass #a fazer
         
         else:
             def _dividir(_vetor1,k):
@@ -127,17 +127,12 @@ class matriz:
     def __eq__(self,other):
         if self.ordem() != other.ordem():
             return False
-        
-        diferencas=0
+
         for i in range(len(self.vetor)):
             for j in range(len(self.vetor[0])):
                 if self.vetor[i][j] != other.vetor[i][j]:
-                    diferencas+=1
-                    break
-        if diferencas==0:
-            return True
-        else:
-            return False
+                    return False
+        return True
         
         
     def T(self): 
