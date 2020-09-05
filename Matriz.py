@@ -31,7 +31,7 @@ class matriz:
         return self.vetor[i-1][j-1]
     
     
-    def __setitem__(self,pos,valor):
+    def __setitem__(self,pos,valor): 
         i,j=pos
         self.vetor[i-1][j-1] = valor
         
@@ -92,7 +92,7 @@ class matriz:
                 if n!=p:
                     raise ValueError ('n diferente de p')
                     
-                resultado = [[sum(a * b for a, b in zip(A_linha, B_coluna))  
+                resultado = [[sum(a * b for a, b in zip(A_linha, B_coluna))   #depois mudar para o meu jeito
                         for B_coluna in zip(*other.vetor)] 
                                 for A_linha in self.vetor] 
                 return matriz(resultado) 
@@ -174,10 +174,13 @@ def para_matriz(A,_float=False,sep=';'):
 
 def matriz_nula(m,n):
     '''Cria uma matriz nula de ordem m x n.'''
-    linha=[]
-    for i in range(m):
-        linha.append(0)
-    vetor=[]
-    for i in range(n):
-        vetor.append(linha)
+    vetor=[[0 for coluna in range(n)] for linha in range(m)] #evitar "reference share" 
     return matriz(vetor)
+
+def matriz_identidade(m):
+    identidade=matriz_nula(m,m)
+    for i in range(1,m+1):
+        for j in range(1,m+1):
+            if i==j:
+                identidade[i,j]=1
+    return identidade 
