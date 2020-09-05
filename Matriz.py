@@ -88,7 +88,7 @@ class matriz:
     
     def __mul__(self,other):
         if type(self) == matriz and type(other) == matriz:
-                m,n,p,q=self.ordem()[0],self.ordem()[1],other.ordem()[0],other.ordem()[1]
+                n,p=self.ordem()[1],other.ordem()[0]
                 if n!=p:
                     raise ValueError ('n diferente de p')
                     
