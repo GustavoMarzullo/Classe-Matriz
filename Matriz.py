@@ -1,3 +1,25 @@
+def para_matriz(A,_float=False,sep=';'):
+    '''Converte uma string em um vetor de vetores.
+    \nsep => separador das linhas da matriz
+    \n_float => se True, converte para float, caso contrário, converte para int.'''
+    
+    def converter(lista,_float):
+        '''Converte lista de string para lista de int ou float.'''
+        if _float==False:
+            for i in range(len(lista)):
+                lista[i]=int(lista[i])
+        else:
+            for i in range(len(lista)):
+                lista[i]=float(lista[i])
+
+    A_split=A.split(sep)
+    L=[]
+    for i in A_split:
+        L.append(i.split(','))
+    for i in L:
+        converter(i,_float)
+    return matriz(L)
+
 class matriz:
     def __init__(self,vetor):
         self.vetor=vetor
@@ -87,9 +109,7 @@ class matriz:
     
     def __mul__(self,other):
         if type(self) == matriz and type(other) == matriz:
-            if len(self.valor(i=1)) != len(other.valor(j=1)):
-                raise ValueError ('Número de colunas da primeira diferente do número de linhas da segunda')
-            #a continuar
+            print('Ainda a fazer.')
                 
         else:
             def _multiplicar(_vetor1,k):
@@ -107,7 +127,7 @@ class matriz:
               
     def __truediv__(self,other):
         if type(self) == matriz and type(other) == matriz:
-            pass #a fazer
+            print('Ainda a fazer.')
         
         else:
             def _dividir(_vetor1,k):
