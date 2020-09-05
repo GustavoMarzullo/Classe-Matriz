@@ -1,26 +1,3 @@
-def para_matriz(A,_float=False,sep=';'):
-    '''Converte uma string em um vetor de vetores.
-    \nsep => separador das linhas da matriz
-    \n_float => se True, converte para float, caso contrário, converte para int.'''
-    
-    def converter(lista,_float):
-        '''Converte lista de string para lista de int ou float.'''
-        if _float==False:
-            for i in range(len(lista)):
-                lista[i]=int(lista[i])
-        else:
-            for i in range(len(lista)):
-                lista[i]=float(lista[i])
-
-    A_split=A.split(sep)
-    L=[]
-    for i in A_split:
-        L.append(i.split(','))
-    for i in L:
-        converter(i,_float)
-    return matriz(L)
-
-
 class matriz:
     def __init__(self,vetor):
         self.vetor=vetor
@@ -47,6 +24,7 @@ class matriz:
         else: #retornando um valor i,j
             return self.vetor[i-1][j-1] 
      
+
     def __getitem__(self,pos):
         '''Retorna o item na posição i,j.'''
         i,j=pos
@@ -110,7 +88,14 @@ class matriz:
     
     def __mul__(self,other):
         if type(self) == matriz and type(other) == matriz:
-            print('Ainda a fazer.')
+                m,n,p,q=self.ordem()[0],self.ordem()[1],other.ordem()[0],other.ordem()[1]
+                if n!=p:
+                    raise ValueError ('n diferente de p')
+                    
+                resultado = [[sum(a * b for a, b in zip(A_linha, B_coluna))  
+                        for B_coluna in zip(*other.vetor)] 
+                                for A_linha in self.vetor] 
+                return matriz(resultado) 
                 
         else:
             def _multiplicar(_vetor1,k):
@@ -162,3 +147,37 @@ class matriz:
         for _ in range(len(self.vetor[0])):
             transposta.append(self.valor(j=_+1))
         return matriz(transposta)
+    
+#funções fora da classe 
+
+def para_matriz(A,_float=False,sep=';'):
+    '''Converte uma string em um vetor de vetores.
+    \nsep => separador das linhas da matriz.
+    \n_float => se True, converte para float, caso contrário, converte para int.'''
+    
+    def converter(lista,_float):
+        '''Converte lista de string para lista de int ou float.'''
+        if _float==False:
+            for i in range(len(lista)):
+                lista[i]=int(lista[i])
+        else:
+            for i in range(len(lista)):
+                lista[i]=float(lista[i])
+
+    A_split=A.split(sep)
+    L=[]
+    for i in A_split:
+        L.append(i.split(','))
+    for i in L:
+        converter(i,_float)
+    return matriz(L)       
+
+def matriz_nula(m,n):
+    '''Cria uma matriz nula de ordem m x n.'''
+    linha=[]
+    for i in range(m):
+        linha.append(0)
+    vetor=[]
+    for i in range(n):
+        vetor.append(linha)
+    return matriz(vetor)
