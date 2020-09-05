@@ -20,6 +20,7 @@ def para_matriz(A,_float=False,sep=';'):
         converter(i,_float)
     return matriz(L)
 
+
 class matriz:
     def __init__(self,vetor):
         self.vetor=vetor
