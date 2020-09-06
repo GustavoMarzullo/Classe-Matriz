@@ -91,7 +91,7 @@ class matriz:
         
         if type(self) == type(other): #mutiplicação de matrizes
         
-                m,n,p,q=self.ordem()[0] ,self.ordem()[1] #linhas de self, colunas de self
+                m,n=self.ordem()[0] ,self.ordem()[1] #linhas de self, colunas de self
                 p,q=other.ordem()[0],other.ordem()[1] #linhas de other, colunas de other
                 
                 if n!=p:
