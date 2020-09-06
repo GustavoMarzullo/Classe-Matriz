@@ -3,11 +3,17 @@ class matriz:
         self.vetor=vetor
     
     def __repr__(self):
-        return ('\n'.join([''.join(['{:6}'.format(item) for item in row]) for row in self.vetor]))
+        if self.ordem()[0]>5 or self.ordem()[1]>5:
+            return self.vetor
+        else:
+            return ('\n'.join([''.join(['{:6}'.format(item) for item in row]) for row in self.vetor]))
     
     
     def __str__(self):
-        return ('\n'.join([''.join(['{:6}'.format(item) for item in row]) for row in self.vetor]))
+        if self.ordem()[0]>5 or self.ordem()[1]>5:
+            return self.vetor
+        else:
+            return ('\n'.join([''.join(['{:6}'.format(item) for item in row]) for row in self.vetor]))
     
     
     def valor(self,i=None,j=None):
@@ -123,7 +129,7 @@ class matriz:
     def __truediv__(self,other):
         
         if type(self) == matriz and type(other) == matriz:   
-            return  self * matriz(inverter(other))
+            return  self * inverter(other)
               
         else:
             def _dividir(_vetor1,k):
@@ -199,7 +205,7 @@ def identidade(m):
 def inverter(_matriz):
     '''[A,B,C] => [1/A,1/B,1/C]'''
     _vetor1=[[1/coluna for coluna in linha] for linha in _matriz.vetor] #evitar "reference share" 
-    return _vetor1
+    return matriz(_vetor1)
 
 def oposta(_matriz):
     '''[A,B,C] => [-A,-B,-C]'''
