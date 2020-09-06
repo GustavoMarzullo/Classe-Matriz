@@ -199,4 +199,9 @@ def identidade(m):
 def inverter(_matriz):
     '''[A,B,C] => [1/A,1/B,1/C]'''
     _vetor1=[[1/coluna for coluna in linha] for linha in _matriz.vetor] #evitar "reference share" 
-    return _vetor1 
+    return _vetor1
+
+def oposta(_matriz):
+    '''[A,B,C] => [-A,-B,-C]'''
+    _vetor1=[[-coluna for coluna in linha] for linha in _matriz.vetor] #evitar "reference share" 
+    return matriz(_vetor1)
