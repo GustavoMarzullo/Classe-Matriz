@@ -70,7 +70,7 @@ class matriz:
     
     def __sub__(self,other):
         def _subtrair(_vetor1,_vetor2):
-            '''[A,B,C] + [D,E,F]=[A-D,B-E,C-F]'''
+            '''[A,B,C] - [D,E,F]=[A-D,B-E,C-F]'''
             _vetor3=_vetor1.copy()
             for i in range(len(_vetor3)):
                 _vetor3[i]=_vetor3[i]-_vetor2[i]
