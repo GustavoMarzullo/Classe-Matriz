@@ -121,8 +121,9 @@ class matriz:
   
               
     def __truediv__(self,other):
-        if type(self) == matriz and type(other) == matriz:            
-            return self * inverter(other)
+        
+        if type(self) == matriz and type(other) == matriz:   
+            return  self * matriz(inverter(other))
               
         else:
             def _dividir(_vetor1,k):
@@ -197,9 +198,5 @@ def identidade(m):
 
 def inverter(_matriz):
     '''[A,B,C] => [1/A,1/B,1/C]'''
-    _vetor1=_matriz.vetor.copy()
-    for i in range(len(_vetor1)):
-        for j in range(len(_vetor1[0])):
-            _vetor1[i][j]=1/_vetor1[i][j]
-    _vetor1=matriz(_vetor1)
-    return _vetor1
+    _vetor1=[[1/coluna for coluna in linha] for linha in _matriz.vetor] #evitar "reference share" 
+    return _vetor1 
