@@ -4,14 +4,14 @@ class matriz:
     
     def __repr__(self):
         if self.ordem()[0]>5 or self.ordem()[1]>5:
-            return self.vetor
+            return str(self.vetor)
         else:
             return ('\n'.join([''.join(['{:6}'.format(item) for item in row]) for row in self.vetor]))
     
     
     def __str__(self):
         if self.ordem()[0]>5 or self.ordem()[1]>5:
-            return self.vetor
+            return str(self.vetor)
         else:
             return ('\n'.join([''.join(['{:6}'.format(item) for item in row]) for row in self.vetor]))
     
