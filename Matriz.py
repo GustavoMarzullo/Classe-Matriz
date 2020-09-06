@@ -62,7 +62,7 @@ class matriz:
             _vetor3=_vetor1.copy()
             for i in range(len(_vetor3)):
                 _vetor3[i]=_vetor3[i]+_vetor2[i]
-            return _vetor3 
+            return _vetor3  
     
         if self.ordem()!=other.ordem():
             raise ValueError ('Matrizes com ordens diferentes.')
@@ -137,7 +137,7 @@ class matriz:
                 _vetor3=_vetor1.copy()
                 
                 for i in range(len(_vetor3)):
-                    _vetor3[i]=_vetor3[i]/k
+                    _vetor3[i]=_vetor3[i]/k 
                 return _vetor3
             
             _matriz=self.vetor.copy()
