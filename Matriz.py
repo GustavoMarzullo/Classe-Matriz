@@ -105,9 +105,9 @@ class matriz:
                     
                 C=nula(m,q)
                 for i in range(1,m+1): #iterando sobre as linhas de self
-                    for j in range(1,other.ordem()[1]+1): #iterando sobre as colunas de other
+                    for j in range(1,q+1): #iterando sobre as colunas de other
                         soma=0
-                        for k in range(1,other.ordem()[0]+1): #iterando sobre as linhas de other
+                        for k in range(1,p+1): #iterando sobre as linhas de other
                             soma+= self[i,k] * other[k,j] 
                         C[i,j]=soma
                 return C 
@@ -166,7 +166,7 @@ class matriz:
     
 #funções fora da classe 
 
-def para_matriz(A,_float=False,sep=';'):
+def Matriz(A,_float=False,sep=';'):
     '''Converte uma string em um vetor de vetores.
     \nsep => separador das linhas da matriz.
     \n_float => se True, converte para float, caso contrário, converte para int.'''
