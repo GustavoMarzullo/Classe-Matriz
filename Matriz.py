@@ -86,18 +86,27 @@ class matriz:
             return matriz(_matriz)
     
     
+    
     def __mul__(self,other):
-        if type(self) == matriz and type(other) == matriz:
-                n,p=self.ordem()[1],other.ordem()[0]
-                if n!=p:
-                    raise ValueError ('n diferente de p')
-                    
-                resultado = [[sum(a * b for a, b in zip(A_linha, B_coluna))   #depois mudar para o meu jeito
-                        for B_coluna in zip(*other.vetor)] 
-                                for A_linha in self.vetor] 
-                return matriz(resultado) 
+        
+        if type(self) == type(other): #mutiplicação de matrizes
+        
+                m,n,p,q=self.ordem()[0] ,self.ordem()[1] #linhas de self, colunas de self
+                p,q=other.ordem()[0],other.ordem()[1] #linhas de other, colunas de other
                 
-        else:
+                if n!=p:
+                    raise ValueError ('Matrizes incompatíveis') 
+                    
+                C=nula(m,q)
+                for i in range(1,m+1): #iterando sobre as linhas de self
+                    for j in range(1,other.ordem()[1]+1): #iterando sobre as colunas de other
+                        soma=0
+                        for k in range(1,other.ordem()[0]+1): #iterando sobre as linhas de other
+                            soma+= self[i,k] * other[k,j] 
+                        C[i,j]=soma
+                return C 
+        
+        else: #multiplicação de matriz por escalar  
             def _multiplicar(_vetor1,k):
                 '''k*[A,B,C]=[k*A,k*B,k*C]'''
                 _vetor3=_vetor1.copy()
@@ -172,15 +181,16 @@ def para_matriz(A,_float=False,sep=';'):
         converter(i,_float)
     return matriz(L)       
 
-def matriz_nula(m,n):
+def nula(m,n):
     '''Cria uma matriz nula de ordem m x n.'''
     vetor=[[0 for coluna in range(n)] for linha in range(m)] #evitar "reference share" 
     return matriz(vetor)
 
-def matriz_identidade(m):
-    identidade=matriz_nula(m,m)
+def identidade(m):
+    '''Cria uma matriz identidade de ordem m.'''
+    identidade=nula(m,m)
     for i in range(1,m+1):
         for j in range(1,m+1):
             if i==j:
                 identidade[i,j]=1
-    return identidade 
+    return identidade
