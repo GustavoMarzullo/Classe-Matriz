@@ -1,5 +1,3 @@
-#testando o github
-
 class matriz:
     def __init__(self,vetor):
         self.vetor=vetor
