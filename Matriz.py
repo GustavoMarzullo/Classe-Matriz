@@ -163,7 +163,57 @@ class matriz:
         for _ in range(len(self.vetor[0])):
             transposta.append(self.valor(j=_+1))
         return matriz(transposta)
+
+
+    def inverter(_matriz):
+        '''[A,B,C] => [1/A,1/B,1/C]'''
+        _vetor1=[[1/coluna for coluna in linha] for linha in _matriz.vetor] #evitar "reference share" 
+        return matriz(_vetor1)
     
+    def oposta(_matriz):
+        '''[A,B,C] => [-A,-B,-C]'''
+        _vetor1=[[-coluna for coluna in linha] for linha in _matriz.vetor] #evitar "reference share" 
+        return matriz(_vetor1)
+    
+    def det(_matriz):
+        '''Retorna a determinante da matriz A.\nReferência: https://www.blogcyberini.com/2017/10/determinantes-via-triangularizacao.html'''
+        A=[[coluna for coluna in linha] for linha in _matriz.vetor]
+        A=matriz(A)
+        if A.ordem()[0] != A.ordem()[1]:
+            raise ValueError ('Matriz não é quadrada.')
+        n=A.ordem()[0]
+        p=1 #fator de ajuste
+        
+        for k in range(1,n):
+            max_=abs(A[k,k])
+            max_index=k
+            for i in range(k+1,n+1):
+                if max_<abs(A[i,k]):
+                    max_=abs(A[i,k])
+                    max_index=i
+            if max_index != k:
+                p=p*-1
+                for j in range(1,n+1): 
+                    temp=A[k,j]
+                    A[k,j]=A[max_index,j]
+                    A[max_index,j]=temp
+            if A[k,k]==0:
+                return 0 #a matriz é singular
+            else:
+                for m in range(k+1,n+1):
+                    F=-1*A[m,k]/A[k,k] 
+                    A[m,k]=0 #elimina a primeira iteração
+                    for l in range(k+1,n+1):
+                        A[m,l]+=F*A[k,l]
+        
+        #calculando o determinante
+        det = 1
+        for q in range(1,n+1):
+            det = det*A[q,q]
+        
+        return p*det 
+
+
 #funções fora da classe 
 
 def Matriz(A,_float=False,sep=';'):
@@ -202,50 +252,3 @@ def identidade(m):
                 identidade[i,j]=1
     return identidade
 
-def inverter(_matriz):
-    '''[A,B,C] => [1/A,1/B,1/C]'''
-    _vetor1=[[1/coluna for coluna in linha] for linha in _matriz.vetor] #evitar "reference share" 
-    return matriz(_vetor1)
-
-def oposta(_matriz):
-    '''[A,B,C] => [-A,-B,-C]'''
-    _vetor1=[[-coluna for coluna in linha] for linha in _matriz.vetor] #evitar "reference share" 
-    return matriz(_vetor1)
-
-def det(_matriz):
-    '''Retorna a determinante da matriz A.\nReferência: https://www.blogcyberini.com/2017/10/determinantes-via-triangularizacao.html'''
-    A=[[coluna for coluna in linha] for linha in _matriz.vetor]
-    A=matriz(A)
-    if A.ordem()[0] != A.ordem()[1]:
-        raise ValueError ('Matriz não é quadrada.')
-    n=A.ordem()[0]
-    p=1 #fator de ajuste
-    
-    for k in range(1,n):
-        max_=abs(A[k,k])
-        max_index=k
-        for i in range(k+1,n+1):
-            if max_<abs(A[i,k]):
-                max_=abs(A[i,k])
-                max_index=i
-        if max_index != k:
-            p=p*-1
-            for j in range(1,n+1): 
-                temp=A[k,j]
-                A[k,j]=A[max_index,j]
-                A[max_index,j]=temp
-        if A[k,k]==0:
-            return 0 #a matriz é singular
-        else:
-            for m in range(k+1,n+1):
-                F=-1*A[m,k]/A[k,k] 
-                A[m,k]=0 #elimina a primeira iteração
-                for l in range(k+1,n+1):
-                    A[m,l]+=F*A[k,l]
-    
-    #calculando o determinante
-    det = 1
-    for q in range(1,n+1):
-        det = det*A[q,q]
-    
-    return p*det 
