@@ -213,13 +213,14 @@ def oposta(_matriz):
     return matriz(_vetor1)
 
 def det(_matriz):
-    '''Retorna a determinante da matriz A.'''
+    '''Retorna a determinante da matriz A.\nReferência: https://www.blogcyberini.com/2017/10/determinantes-via-triangularizacao.html'''
     A=[[coluna for coluna in linha] for linha in _matriz.vetor]
     A=matriz(A)
     if A.ordem()[0] != A.ordem()[1]:
         raise ValueError ('Matriz não é quadrada.')
     n=A.ordem()[0]
     p=1 #fator de ajuste
+    
     for k in range(1,n):
         max_=abs(A[k,k])
         max_index=k
@@ -241,23 +242,10 @@ def det(_matriz):
                 A[m,k]=0 #elimina a primeira iteração
                 for l in range(k+1,n+1):
                     A[m,l]+=F*A[k,l]
+    
     #calculando o determinante
     det = 1
     for q in range(1,n+1):
         det = det*A[q,q]
     
     return p*det 
-                
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
