@@ -156,7 +156,7 @@ class matriz:
                     return False
         return True
         
-        
+    
     def T(self): 
         '''Transpõe a matriz.'''
         transposta=[]
