@@ -165,19 +165,19 @@ class matriz:
         return matriz(transposta)
 
 
-    def inverter(_matriz):
+    def inverter(self):
         '''[A,B,C] => [1/A,1/B,1/C]'''
-        _vetor1=[[1/coluna for coluna in linha] for linha in _matriz.vetor] #evitar "reference share" 
+        _vetor1=[[1/coluna for coluna in linha] for linha in self.vetor] #evitar "reference share" 
         return matriz(_vetor1)
     
-    def oposta(_matriz):
+    def oposta(self):
         '''[A,B,C] => [-A,-B,-C]'''
-        _vetor1=[[-coluna for coluna in linha] for linha in _matriz.vetor] #evitar "reference share" 
+        _vetor1=[[-coluna for coluna in linha] for linha in self.vetor] #evitar "reference share" 
         return matriz(_vetor1)
     
-    def det(_matriz):
+    def det(self):
         '''Retorna a determinante da matriz A.\nReferência: https://www.blogcyberini.com/2017/10/determinantes-via-triangularizacao.html'''
-        A=[[coluna for coluna in linha] for linha in _matriz.vetor]
+        A=[[coluna for coluna in linha] for linha in self.vetor]
         A=matriz(A)
         if A.ordem()[0] != A.ordem()[1]:
             raise ValueError ('Matriz não é quadrada.')
