@@ -214,7 +214,17 @@ class matriz:
             det = det*A[q,q]
         
         return p*det 
-
+    
+    
+    def eh_diagonal(self):
+        for i in range(len(self.vetor)):
+            for j in range(len(self.vetor[0])):
+                if i!=j:
+                    if self.vetor[i][j]!=0:
+                        return False
+        return True
+                    
+        
 
 #funções fora da classe 
 
@@ -254,3 +264,20 @@ def identidade(m):
                 identidade[i,j]=1
     return identidade
 
+def diagonal(vetor):
+    '''Cria uma matriz diagonal seguindo a ordem dos números do vetor.'''
+    A=nula(len(vetor),len(vetor))
+    i=0
+    j=0
+    for a in range(len(vetor)):
+        i+=1
+        j+=1
+        A[i,j]=vetor[a]
+    return A
+        
+    
+    
+    
+    
+    
+    
