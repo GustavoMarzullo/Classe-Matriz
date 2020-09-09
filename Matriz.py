@@ -224,8 +224,6 @@ class matriz:
                         return False
         return True
 
-
-
 #funções fora da classe
 
 def Matriz(A,_float=False,sep=';'):
