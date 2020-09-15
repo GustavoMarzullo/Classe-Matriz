@@ -214,7 +214,15 @@ class matriz:
             det = det*A[q,q]
 
         return p*det
-
+    
+    def tr(self):
+        '''Calcula o traço da matriz.'''
+        soma=0
+        for i in range(1,len(self.vetor)+1):
+            for j in range(1,len(self.vetor[0])+1):
+                if i==j:
+                    soma+=self[i,j]
+        return soma
 
     def eh_diagonal(self):
         for i in range(len(self.vetor)):
@@ -223,6 +231,7 @@ class matriz:
                     if self.vetor[i][j]!=0:
                         return False
         return True
+
 
 #funções fora da classe
 
