@@ -6,14 +6,14 @@ class matriz:
         if self.ordem()[0]>5 or self.ordem()[1]>5:
             return str(self.vetor)
         else:
-            return ('\n'.join([''.join(['{:6}'.format(item) for item in row]) for row in self.vetor]))
+            return ('\n\n'.join([''.join(['{:4}'.format(item) for item in row]) for row in self.vetor]))
 
 
     def __str__(self):
         if self.ordem()[0]>5 or self.ordem()[1]>5:
             return str(self.vetor)
         else:
-            return ('\n'.join([''.join(['{:6}'.format(item) for item in row]) for row in self.vetor]))
+            return ('\n\n'.join([''.join(['{:3}'.format(item) for item in row]) for row in self.vetor]))
 
 
     def valor(self,i=None,j=None):
@@ -185,7 +185,6 @@ class matriz:
             raise ValueError ('Matriz não é quadrada.')
         n=A.ordem()[0]
         p=1 #fator de ajuste
-
         for k in range(1,n):
             max_=abs(A[k,k])
             max_index=k
@@ -207,12 +206,10 @@ class matriz:
                     A[m,k]=0 #elimina a primeira iteração
                     for l in range(k+1,n+1):
                         A[m,l]+=F*A[k,l]
-
         #calculando o determinante
         det = 1
         for q in range(1,n+1):
             det = det*A[q,q]
-
         return p*det
     
     def tr(self):
@@ -235,7 +232,7 @@ class matriz:
 
 #funções fora da classe
 
-def Matriz(A,_float=False,sep=';'):
+def Matriz(A,_float=False,sep_linhas=';',sep_colunas=','):
     '''Converte uma string em um vetor de vetores.
     \nsep => separador das linhas da matriz.
     \n_float => se True, converte para float, caso contrário, converte para int.'''
@@ -249,10 +246,10 @@ def Matriz(A,_float=False,sep=';'):
             for i in range(len(lista)):
                 lista[i]=float(lista[i])
 
-    A_split=A.split(sep)
+    A_split=A.split(sep_linhas)
     L=[]
     for i in A_split:
-        L.append(i.split(','))
+        L.append(i.split(sep_colunas))
     for i in L:
         converter(i,_float)
     return matriz(L)
@@ -280,4 +277,4 @@ def diagonal(vetor):
         i+=1
         j+=1
         A[i,j]=vetor[a]
-    return A
+    return A 
