@@ -211,7 +211,7 @@ class matriz:
         for q in range(1,n+1):
             det = det*A[q,q]
         return p*det
-    
+
     def tr(self):
         '''Calcula o traço da matriz.'''
         soma=0
@@ -232,7 +232,7 @@ class matriz:
 
 #funções fora da classe
 
-def Matriz(A,_float=False,sep_linhas=';',sep_colunas=','):
+def Matriz(A,_float=False,sep_linhas=';',sep_col=','):
     '''Converte uma string em um vetor de vetores.
     \nsep => separador das linhas da matriz.
     \n_float => se True, converte para float, caso contrário, converte para int.'''
@@ -249,7 +249,7 @@ def Matriz(A,_float=False,sep_linhas=';',sep_colunas=','):
     A_split=A.split(sep_linhas)
     L=[]
     for i in A_split:
-        L.append(i.split(sep_colunas))
+        L.append(i.split(sep_col))
     for i in L:
         converter(i,_float)
     return matriz(L)
@@ -277,4 +277,4 @@ def diagonal(vetor):
         i+=1
         j+=1
         A[i,j]=vetor[a]
-    return A 
+    return A
