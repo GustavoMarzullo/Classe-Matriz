@@ -13,7 +13,7 @@ class matriz:
         if self.ordem()[0]>5 or self.ordem()[1]>5:
             return str(self.vetor)
         else:
-            return ('\n\n'.join([''.join(['{:3}'.format(item) for item in row]) for row in self.vetor]))
+            return ('\n\n'.join([''.join(['{:4}'.format(item) for item in row]) for row in self.vetor]))
 
 
     def valor(self,i=None,j=None):
