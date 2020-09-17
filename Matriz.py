@@ -13,7 +13,7 @@ class matriz:
         if self.ordem()[0]>5 or self.ordem()[1]>5:
             return str(self.vetor)
         else:
-            return ('\n\n'.join([''.join(['{:3}'.format(item) for item in row]) for row in self.vetor]))
+            return ('\n\n'.join([''.join(['{:4}'.format(item) for item in row]) for row in self.vetor]))
 
 
     def valor(self,i=None,j=None):
@@ -229,6 +229,42 @@ class matriz:
                         return False
         return True
 
+    
+    def perm(self,i,j):
+        '''Permuta a linha i com a linha j. L_i <-> L_j'''
+        L_i=self.valor(i=i) #pegando valor da linha
+        L_j=self.valor(i=j)
+        L=matriz([[coluna for coluna in linha] for linha in self.vetor]) #copiando a matriz
+        
+        #trocando as linhas
+        coluna=1
+        for valor in L_i:
+            L[j,coluna]=valor
+            coluna+=1
+        
+        coluna=1
+        for valor in L_j:
+            L[i,coluna]=valor
+            coluna+=1
+        
+        return L
+                        
+
+    def mult(self,i,k):
+        '''Multiplica a linha i pelo número real não-nulo k.'''
+        L_i=self.valor(i=i) #pegando valor da linha
+        L=matriz([[coluna for coluna in linha] for linha in self.vetor]) #copiando a matriz
+        
+        for _ in range(len(L_i)):
+            L_i[_]*=k
+        
+        coluna=1
+        for valor in L_i:
+            L[i,coluna]=valor
+            coluna+=1
+        
+        return L
+               
 
 #funções fora da classe
 
