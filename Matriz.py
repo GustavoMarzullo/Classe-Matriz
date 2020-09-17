@@ -3,32 +3,22 @@ class matriz:
         self.vetor=vetor
 
     def __repr__(self):
-        if self.ordem()[0]>6 or self.ordem()[1]>6:
-            if self.ordem()[0]<6 or self.ordem()[1]<50:
-                return str(self.vetor)
-            else:
-                return 'Matriz grande demais para ser printada.'
-        else: #https://stackoverflow.com/questions/13214809/pretty-print-2d-python-lis
-            matrix=self.vetor
-            s = [[str(e) for e in row] for row in matrix]
-            lens = [max(map(len, col)) for col in zip(*s)]
-            fmt = '\t'.join('{{:{}}}'.format(x) for x in lens)
-            table = [fmt.format(*row) for row in s]
-            return ('\n'.join(table)) 
-
-    def __str__(self):
-        if self.ordem()[0]>6 or self.ordem()[1]>6:
-            if self.ordem()[0]<6 or self.ordem()[1]<50:
+        if self.ordem()[0]>5 or self.ordem()[1]>5:
+            if self.ordem()[0]<5 or self.ordem()[1]<50:
                 return str(self.vetor)
             else:
                 return 'Matriz grande demais para ser printada.'
         else:
-            matrix=self.vetor
-            s = [[str(e) for e in row] for row in matrix]
-            lens = [max(map(len, col)) for col in zip(*s)]
-            fmt = '\t'.join('{{:{}}}'.format(x) for x in lens)
-            table = [fmt.format(*row) for row in s]
-            return ('\n'.join(table))  
+            return ('\n\n'.join([''.join(['{:4}'.format(item) for item in row]) for row in self.vetor]))
+
+    def __str__(self):
+        if self.ordem()[0]>5 or self.ordem()[1]>5:
+            if self.ordem()[0]<5 or self.ordem()[1]<50:
+                return str(self.vetor)
+            else:
+                return 'Matriz grande demais para ser printada.'
+        else:
+            return ('\n\n'.join([''.join(['{:4}'.format(item) for item in row]) for row in self.vetor]))
 
 
     def valor(self,i=None,j=None):
@@ -244,24 +234,24 @@ class matriz:
                         return False
         return True
 
-    
+
     def perm(self,i,j):
         '''Permuta a linha i com a linha j. L_i <-> L_j'''
         L_i=self.valor(i=i) #pegando valor da linha
         L_j=self.valor(i=j)
         L=[[coluna for coluna in linha] for linha in self.vetor] #copiando a matriz
-        
+
         #trocando as linhas
         coluna=0
         for valor in L_i:
             L[j-1][coluna]=valor
             coluna+=1
-        
+
         coluna=0
         for valor in L_j:
             L[i-1][coluna]=valor
             coluna+=1
-        
+
         return matriz(L)
 
 
@@ -269,17 +259,17 @@ class matriz:
         '''Multiplica a linha i pelo número real não-nulo k.'''
         L_i=self.valor(i=i) #pegando valor da linha
         L=[[coluna for coluna in linha] for linha in self.vetor] #copiando a matriz
-        
+
         for _ in range(len(L_i)):
             L_i[_]*=k
-        
+
         coluna=0
         for valor in L_i:
             L[i-1][coluna]=valor
             coluna+=1
-        
+
         return matriz(L)
-               
+
 
 #funções fora da classe
 
