@@ -234,36 +234,36 @@ class matriz:
         '''Permuta a linha i com a linha j. L_i <-> L_j'''
         L_i=self.valor(i=i) #pegando valor da linha
         L_j=self.valor(i=j)
-        L=matriz([[coluna for coluna in linha] for linha in self.vetor]) #copiando a matriz
+        L=[[coluna for coluna in linha] for linha in self.vetor] #copiando a matriz
         
         #trocando as linhas
-        coluna=1
+        coluna=0
         for valor in L_i:
-            L[j,coluna]=valor
+            L[j-1][coluna]=valor
             coluna+=1
         
-        coluna=1
+        coluna=0
         for valor in L_j:
-            L[i,coluna]=valor
+            L[i-1][coluna]=valor
             coluna+=1
         
-        return L
+        return matriz(L)
                         
 
     def mult(self,i,k):
         '''Multiplica a linha i pelo número real não-nulo k.'''
         L_i=self.valor(i=i) #pegando valor da linha
-        L=matriz([[coluna for coluna in linha] for linha in self.vetor]) #copiando a matriz
+        L=[[coluna for coluna in linha] for linha in self.vetor] #copiando a matriz
         
         for _ in range(len(L_i)):
             L_i[_]*=k
         
-        coluna=1
+        coluna=0
         for valor in L_i:
-            L[i,coluna]=valor
+            L[i-1][coluna]=valor
             coluna+=1
         
-        return L
+        return matriz(L)
                
 
 #funções fora da classe
