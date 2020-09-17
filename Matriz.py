@@ -3,17 +3,32 @@ class matriz:
         self.vetor=vetor
 
     def __repr__(self):
-        if self.ordem()[0]>5 or self.ordem()[1]>5:
-            return str(self.vetor)
-        else:
-            return ('\n\n'.join([''.join(['{:4}'.format(item) for item in row]) for row in self.vetor]))
-
+        if self.ordem()[0]>6 or self.ordem()[1]>6:
+            if self.ordem()[0]<6 or self.ordem()[1]<50:
+                return str(self.vetor)
+            else:
+                return 'Matriz grande demais para ser printada.'
+        else: #https://stackoverflow.com/questions/13214809/pretty-print-2d-python-lis
+            matrix=self.vetor
+            s = [[str(e) for e in row] for row in matrix]
+            lens = [max(map(len, col)) for col in zip(*s)]
+            fmt = '\t'.join('{{:{}}}'.format(x) for x in lens)
+            table = [fmt.format(*row) for row in s]
+            return ('\n'.join(table)) 
 
     def __str__(self):
-        if self.ordem()[0]>5 or self.ordem()[1]>5:
-            return str(self.vetor)
+        if self.ordem()[0]>6 or self.ordem()[1]>6:
+            if self.ordem()[0]<6 or self.ordem()[1]<50:
+                return str(self.vetor)
+            else:
+                return 'Matriz grande demais para ser printada.'
         else:
-            return ('\n\n'.join([''.join(['{:4}'.format(item) for item in row]) for row in self.vetor]))
+            matrix=self.vetor
+            s = [[str(e) for e in row] for row in matrix]
+            lens = [max(map(len, col)) for col in zip(*s)]
+            fmt = '\t'.join('{{:{}}}'.format(x) for x in lens)
+            table = [fmt.format(*row) for row in s]
+            return ('\n'.join(table))  
 
 
     def valor(self,i=None,j=None):
@@ -248,7 +263,7 @@ class matriz:
             coluna+=1
         
         return matriz(L)
-                        
+
 
     def mult(self,i,k):
         '''Multiplica a linha i pelo número real não-nulo k.'''
@@ -295,7 +310,7 @@ def nula(m,n):
     vetor=[[0 for coluna in range(n)] for linha in range(m)] #evitar "reference share"
     return matriz(vetor)
 
-def identidade(m):
+def I(m):
     '''Cria uma matriz identidade de ordem m.'''
     identidade=nula(m,m)
     for i in range(1,m+1):
