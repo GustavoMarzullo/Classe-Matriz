@@ -9,7 +9,7 @@ class matriz:
             else:
                 return 'Matriz grande demais para ser printada.'
         else:
-            return ('\n\n'.join([''.join(['{:6}'.format(item) for item in row]) for row in self.vetor]))
+            return ('\n\n'.join([''.join(['{:6}'.format(item) for item in row]) for row in round(self,2).vetor]))
 
     def __str__(self):
         if self.ordem()[0]>5 or self.ordem()[1]>8:
@@ -18,7 +18,7 @@ class matriz:
             else:
                 return 'Matriz grande demais para ser printada.'
         else:
-            return ('\n\n'.join([''.join(['{:6}'.format(item) for item in row]) for row in self.vetor]))
+            return ('\n\n'.join([''.join(['{:6}'.format(item) for item in row]) for row in ound(self,2).vetor]))
 
 
     def valor(self,i=None,j=None):

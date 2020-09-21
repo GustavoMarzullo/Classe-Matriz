@@ -51,15 +51,15 @@ Permuta a linha i com a linha j. L_i <-> L_j
 
 Multiplica a linha i pelo número real k.
 
-**somar(self,i,i2):**
+**somar(self,i,i2,k):**
 
-Soma à linha i os valores de i2.
-[a,b,c]+[a',b',c']=[a+a',b+b',c+c']
+Soma à linha i k os valores de i2.
+[a,b,c]+k[a',b',c']=[a+ka',b+kb',c+kc']
 
 **sub(self,i,i2):**
 
 Subtrai à linha i os valores de i2.
-[a,b,c]-[a',b',c']=[a-a',b-b',c-c']
+[a,b,c]-k[a',b',c']=[a-ka',b-kb',c-kc']
   
   
 E, claro, as funções somar(+), subtrair(-) e multiplicar(*). 
