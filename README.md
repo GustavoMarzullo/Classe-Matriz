@@ -53,16 +53,16 @@ Multiplica a linha i pelo número real k.
 
 **somar(self,i,i2,k):**
 
-Soma à linha i k os valores de i2.
+Soma à linha i k vezes os valores de i2.
 [a,b,c]+k[a',b',c']=[a+ka',b+kb',c+kc']
 
-**sub(self,i,i2):**
+**sub(self,i,i2,k):**
 
-Subtrai à linha i os valores de i2.
+Subtrai à linha i k vezes os valores de i2.
 [a,b,c]-k[a',b',c']=[a-ka',b-kb',c-kc']
   
   
-E, claro, as funções somar(+), subtrair(-) e multiplicar(*). 
+E, claro, as funções somar(+), subtrair(-), multiplicar(*) e igual (==). 
  
 # Funções fora da classe
 
