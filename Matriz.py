@@ -256,7 +256,7 @@ class matriz:
 
 
     def mult(self,i,k):
-        '''Multiplica a linha i pelo número real não-nulo k.'''
+        '''Multiplica a linha i pelo número real k.'''
         L_i=self.valor(i=i).copy() #pegando valor da linha
         L=self.vetor.copy()
 
@@ -285,7 +285,7 @@ class matriz:
 
     def sub(self,i,i2):
         '''Subtrai à linha i os valores de i2.\
-[a,b,c]-[a',b',c']=[a-a',b-b',c-c'] '''
+[a,b,c]-[a',b',c']=[a-a',b-b',c-c']'''
 
         def diminuir(A,B):
             for i in range(len(A)):
@@ -325,11 +325,11 @@ def nula(m,n):
     vetor=[[0 for coluna in range(n)] for linha in range(m)] #evitar "reference share"
     return matriz(vetor)
 
-def I(m):
-    '''Cria uma matriz identidade de ordem m.'''
-    identidade=nula(m,m)
+def I(m,n):
+    '''Cria uma matriz identidade de ordem m,n.'''
+    identidade=nula(m,n)
     for i in range(1,m+1):
-        for j in range(1,m+1):
+        for j in range(1,n+1):
             if i==j:
                 identidade[i,j]=1
     return identidade
