@@ -3,8 +3,8 @@ class matriz:
         self.vetor=vetor
 
     def __repr__(self):
-        if self.ordem()[0]>5 or self.ordem()[1]>5:
-            if self.ordem()[0]<5 or self.ordem()[1]<50:
+        if self.ordem()[0]>5 or self.ordem()[1]>8:
+            if self.ordem()[0]<=30 and self.ordem()[1]<=30:
                 return str(self.vetor)
             else:
                 return 'Matriz grande demais para ser printada.'
@@ -12,8 +12,8 @@ class matriz:
             return ('\n\n'.join([''.join(['{:4}'.format(item) for item in row]) for row in self.vetor]))
 
     def __str__(self):
-        if self.ordem()[0]>5 or self.ordem()[1]>5:
-            if self.ordem()[0]<5 or self.ordem()[1]<50:
+        if self.ordem()[0]>5 or self.ordem()[1]>8:
+            if self.ordem()[0]<=30 and self.ordem()[1]<=30:
                 return str(self.vetor)
             else:
                 return 'Matriz grande demais para ser printada.'
