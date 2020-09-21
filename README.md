@@ -5,8 +5,7 @@ Não é nada de novo que estou fazendo. Estou apenas treinando.
 
 ## Como usar:
     1. Acesse a pasta onde se encontra o arquivo Matriz.py
-    2. Rode o python via terminal/cmd
-    3. Importe usando o comando "from Matriz import *"
+    2. Rode via terminal/cmd com o comando 'python -i Matriz.py'
  
  Para criar um objeto da classe matriz: matriz([[a11,a12,...,a1n],....[an1,an2,...,anm]] ou com a função Matriz. 
  
