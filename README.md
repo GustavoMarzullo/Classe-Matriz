@@ -8,6 +8,8 @@ Não é nada de novo que estou fazendo. Estou apenas treinando.
     2. Rode o python via terminal/cmd
     3. Importe usando o comando "from Matriz import *"
  
+ Para criar um objeto da classe matriz: matriz([[a11,a12,...,i1n],....[an1,an2,...,anm]] ou com a função Matriz. 
+ 
  ## Funções disponíveis dentro da classe Matriz:
  
  **valor(self, i=None, j= None):**
