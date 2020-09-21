@@ -239,7 +239,7 @@ class matriz:
         '''Permuta a linha i com a linha j. L_i <-> L_j'''
         L_i=self.valor(i=i) #pegando valor da linha
         L_j=self.valor(i=j)
-        L=[[coluna for coluna in linha] for linha in self.vetor] #copiando a matriz
+        L=self.vetor.copy()
 
         #trocando as linhas
         coluna=0
@@ -271,25 +271,25 @@ class matriz:
         return matriz(L)
     
     
-    def somar(self,i,i2):
-        '''Soma à linha i os valores de i2. \
-[a,b,c]+[a',b',c']=[a+a',b+b',c+c'] '''
+    def somar(self,i,i2,k):
+        '''Soma à linha i k vezes os valores de i2. \
+[a,b,c]+k[a',b',c']=[a+ka',b+kb',c+kc'] '''
 
         def soma(A,B):
             for i in range(len(A)):
-                A[i]+=B[i]
+                A[i]+=k*B[i]
             return A
         L=self.vetor
         soma(L[i-1],L[i2-1])
         return matriz(L)
 
     def sub(self,i,i2):
-        '''Subtrai à linha i os valores de i2.\
-[a,b,c]-[a',b',c']=[a-a',b-b',c-c']'''
+        '''Subtrai à linha i k vezes os valores de i2.\
+[a,b,c]-k[a',b',c']=[a-ka',b-kb',c-kc']'''
 
         def diminuir(A,B):
             for i in range(len(A)):
-                A[i]-=B[i]
+                A[i]-=k*B[i]
             return A
         L=self.vetor
         diminuir(L[i-1],L[i2-1])
