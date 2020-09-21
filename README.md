@@ -62,6 +62,9 @@ Soma à linha i os valores de i2.
 Subtrai à linha i os valores de i2.
 [a,b,c]-[a',b',c']=[a-a',b-b',c-c']
   
+  
+E, claro, as funções somar(+), subtrair(-) e multiplicar(*). 
+ 
 # Funções fora da classe
 
 **Matriz(A,_float=False,sep_linhas=';',sep_col=','):**
@@ -71,6 +74,10 @@ sep => separador das linhas da matriz.
 _float => se True, converte para float, caso contrário, converte para int.
 
 **nula(m,n):**
+
+Cria uma matriz identidade de ordem m,n.
+
+**I(m,n):**
 
 Cria uma matriz identidade de ordem m,n.
 
