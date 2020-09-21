@@ -257,8 +257,8 @@ class matriz:
 
     def mult(self,i,k):
         '''Multiplica a linha i pelo número real não-nulo k.'''
-        L_i=self.valor(i=i) #pegando valor da linha
-        L=[[coluna for coluna in linha] for linha in self.vetor] #copiando a matriz
+        L_i=self.valor(i=i).copy() #pegando valor da linha
+        L=self.vetor.copy()
 
         for _ in range(len(L_i)):
             L_i[_]*=k
@@ -268,6 +268,31 @@ class matriz:
             L[i-1][coluna]=valor
             coluna+=1
 
+        return matriz(L)
+    
+    
+    def somar(self,i,i2):
+        '''Soma à linha i os valores de i2. \
+[a,b,c]+[a',b',c']=[a+a',b+b',c+c'] '''
+
+        def soma(A,B):
+            for i in range(len(A)):
+                A[i]+=B[i]
+            return A
+        L=self.vetor
+        soma(L[i-1],L[i2-1])
+        return matriz(L)
+
+    def sub(self,i,i2):
+        '''Subtrai à linha i os valores de i2.\
+[a,b,c]-[a',b',c']=[a-a',b-b',c-c'] '''
+
+        def diminuir(A,B):
+            for i in range(len(A)):
+                A[i]-=B[i]
+            return A
+        L=self.vetor
+        diminuir(L[i-1],L[i2-1])
         return matriz(L)
 
 
