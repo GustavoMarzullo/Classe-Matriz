@@ -9,7 +9,7 @@ class matriz:
             else:
                 return 'Matriz grande demais para ser printada.'
         else:
-            return ('\n\n'.join([''.join(['{:4}'.format(item) for item in row]) for row in self.vetor]))
+            return ('\n\n'.join([''.join(['{:6}'.format(item) for item in row]) for row in self.vetor]))
 
     def __str__(self):
         if self.ordem()[0]>5 or self.ordem()[1]>8:
@@ -18,7 +18,7 @@ class matriz:
             else:
                 return 'Matriz grande demais para ser printada.'
         else:
-            return ('\n\n'.join([''.join(['{:4}'.format(item) for item in row]) for row in self.vetor]))
+            return ('\n\n'.join([''.join(['{:6}'.format(item) for item in row]) for row in self.vetor]))
 
 
     def valor(self,i=None,j=None):
@@ -239,7 +239,7 @@ class matriz:
         '''Permuta a linha i com a linha j. L_i <-> L_j'''
         L_i=self.valor(i=i) #pegando valor da linha
         L_j=self.valor(i=j)
-        L=self.vetor.copy()
+        L=[[coluna for coluna in linha] for linha in self.vetor]
 
         #trocando as linhas
         coluna=0
@@ -271,7 +271,7 @@ class matriz:
         return matriz(L)
     
     
-    def somar(self,i,i2,k):
+    def somar(self,i,i2,k=1):
         '''Soma à linha i k vezes os valores de i2. \
 [a,b,c]+k[a',b',c']=[a+ka',b+kb',c+kc'] '''
 
@@ -283,7 +283,7 @@ class matriz:
         soma(L[i-1],L[i2-1])
         return matriz(L)
 
-    def sub(self,i,i2):
+    def sub(self,i,i2,k=1):
         '''Subtrai à linha i k vezes os valores de i2.\
 [a,b,c]-k[a',b',c']=[a-ka',b-kb',c-kc']'''
 
