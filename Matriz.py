@@ -324,16 +324,26 @@ class matriz:
         for linha in A:
             del linha[j-1]
         
-        return matriz(A).det()
+        return (-1)**(i+j)*matriz(A).det()
    
     def mcofat(self):
-        '''Retonar a matriz de cofatores.'''
+        '''Retona a matriz de cofatores.'''
         m,n=self.ordem()[0],self.ordem()[1]
         A=nula(m,n)
         for i in range(1,m+1):
             for j in range(1,n+1):
                 A[i,j]=self.cofat(i,j)
         return round(A,2)
+    
+    def inversa(self):
+        '''Retorna a matiz inversa.'''
+        determinante= self.det()
+        if determinante== 1:
+            raise ValueError('Matriz não invertível.')
+            
+        A=matriz([[coluna for coluna in linha] for linha in self.vetor])
+        Ct=A.mcofat().T()
+        return round(Ct * 1/determinante,2)
     
 #funções fora da classe
 

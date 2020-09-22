@@ -77,6 +77,9 @@ Retorna o cofator da posição i,j.
 
 Retorna a matriz de cofatores.
 
+**inversa(self)**:
+
+Retorna a matriz inversa.
 
 E, claro, as funções somar(+), subtrair(-), multiplicar(*) e igual (==). 
  
@@ -101,6 +104,6 @@ Cria uma matriz identidade de ordem m,n.
 Cria uma matriz diagonal seguindo a ordem dos números do vetor.
   
   
-**int(self):**
+**Int(self):**
 
 Converte uma matriz de float em uma matriz de int.
