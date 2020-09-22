@@ -20,12 +20,6 @@ class matriz:
         else:
             return ('\n\n'.join([''.join(['{:6}'.format(item) for item in row]) for row in self.vetor]))
 
-
-    def Int(self):
-        m,n=self.ordem()
-        for i in range(1,m+1):
-            for j in range(1,n+1):
-                self[i,j]=int(self[i,j])
         
     def valor(self,i=None,j=None):
         '''Retorna o valor da posição i,j. Caso um dois dois se omita, retorna a linha i ou a coluna j.'''
@@ -321,6 +315,26 @@ class matriz:
         return matriz(L)
         
     
+    def cofat(self,i,j):
+        '''Retorna o cofator i,j da matriz.'''
+        if self.ordem()[0] != self.ordem()[1]:
+            raise ValueError ('Matriz não é quadrada.')
+        A=[[coluna for coluna in linha] for linha in self.vetor]
+        del A[i-1]
+        for linha in A:
+            del linha[j-1]
+        
+        return matriz(A).det()
+   
+    def mcofat(self):
+        '''Retonar a matriz de cofatores.'''
+        m,n=self.ordem()[0],self.ordem()[1]
+        A=nula(m,n)
+        for i in range(1,m+1):
+            for j in range(1,n+1):
+                A[i,j]=self.cofat(i,j)
+        return round(A,2)
+    
 #funções fora da classe
 
 def Matriz(A,_float=False,sep_linhas=';',sep_col=','):
@@ -369,3 +383,12 @@ def diagonal(vetor):
         j+=1
         A[i,j]=vetor[a]
     return A
+
+
+def Int(self):
+    '''Tranformar uma matriz de float em uma matriz de int.'''
+    m,n=self.ordem()
+    for i in range(1,m+1):
+        for j in range(1,n+1):
+            self[i,j]=int(self[i,j])
+    return self

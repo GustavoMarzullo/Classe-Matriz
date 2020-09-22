@@ -69,7 +69,15 @@ Soma à linha i k vezes os valores de i2.
 Subtrai à linha i k vezes os valores de i2.
 [a,b,c]-k[a',b',c']=[a-ka',b-kb',c-kc']
   
-  
+**cofat(self,i,j):**
+
+Retorna o cofator da posição i,j.
+
+**macofat(self):**
+
+Retorna a matriz de cofatores.
+
+
 E, claro, as funções somar(+), subtrair(-), multiplicar(*) e igual (==). 
  
 # Funções fora da classe
@@ -92,3 +100,7 @@ Cria uma matriz identidade de ordem m,n.
 
 Cria uma matriz diagonal seguindo a ordem dos números do vetor.
   
+  
+**int(self):**
+
+Converte uma matriz de float em uma matriz de int.
