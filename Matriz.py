@@ -302,6 +302,7 @@ class matriz:
         soma(L[i-1],L[i2-1])
         return matriz(L)
 
+
     def sub(self,i,i2,k=1):
         '''Subtrai à linha i k vezes os valores de i2.\
 [a,b,c]-k[a',b',c']=[a-ka',b-kb',c-kc']'''
@@ -326,6 +327,7 @@ class matriz:
         
         return (-1)**(i+j)*matriz(A).det()
    
+    
     def mcofat(self):
         '''Retona a matriz de cofatores.'''
         m,n=self.ordem()[0],self.ordem()[1]
@@ -334,6 +336,7 @@ class matriz:
             for j in range(1,n+1):
                 A[i,j]=self.cofat(i,j)
         return round(A,2)
+    
     
     def inversa(self):
         '''Retorna a matiz inversa.'''
@@ -344,6 +347,7 @@ class matriz:
         A=matriz([[coluna for coluna in linha] for linha in self.vetor])
         Ct=A.mcofat().T()
         return round(Ct * 1/determinante,2)
+    
     
 #funções fora da classe
 
@@ -394,7 +398,6 @@ def diagonal(vetor):
         A[i,j]=vetor[a]
     return A
 
-
 def Int(self):
     '''Tranformar uma matriz de float em uma matriz de int.'''
     m,n=self.ordem()
@@ -402,3 +405,61 @@ def Int(self):
         for j in range(1,n+1):
             self[i,j]=int(self[i,j])
     return self
+
+
+def cramer(self):
+    '''Resolve o sistema de equações lineares.'''
+    if type(self)!=matriz:
+        raise ValueError('Objeto inserido não é uma matriz.')
+    
+    m,n=self.ordem()[0],self.ordem()[1]
+    
+    b=[] #Ax=b
+    for i in range(1,m+1):
+        b.append(self[i,n])
+        
+    def x_i(self,j):
+        '''Retorna o valor da variável x_{i=j} do sistema.'''
+        A_i=[[coluna for coluna in linha] for linha in self.vetor]
+        for i in range(m): #tirando a última coluna
+            del A_i[i][n-1]
+        
+        A_i=matriz(A_i)
+        det_A=A_i.det()
+        
+        for i in range(1,m+1): #botando os valores de b na coluna j
+            A_i[i,j]=b[i-1]
+        
+        return A_i.det()/det_A
+    
+    resultados=[]
+    for resultado in range(1,n):
+        valor=x_i(self,resultado)
+        resultados.append(valor)
+        print('x'+str(resultado),'=',round(valor,3))
+        
+    return resultados
+    
+    
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

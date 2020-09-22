@@ -107,3 +107,13 @@ Cria uma matriz diagonal seguindo a ordem dos números do vetor.
 **Int(self):**
 
 Converte uma matriz de float em uma matriz de int.
+
+**cramer(self):**
+
+Resolve o sistema de equações lineares.
+
+a11*x1, a12*x2,...,a1n*xn=b1
+	.
+	.
+	.
+an1*x1,an2*x2,...,ann*xn=bn
