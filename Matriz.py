@@ -439,27 +439,3 @@ def cramer(self):
         print('x'+str(resultado),'=',round(valor,3))
         
     return resultados
-    
-    
-        
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
