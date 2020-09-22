@@ -21,6 +21,12 @@ class matriz:
             return ('\n\n'.join([''.join(['{:6}'.format(item) for item in row]) for row in self.vetor]))
 
 
+    def Int(self):
+        m,n=self.ordem()
+        for i in range(1,m+1):
+            for j in range(1,n+1):
+                self[i,j]=int(self[i,j])
+        
     def valor(self,i=None,j=None):
         '''Retorna o valor da posição i,j. Caso um dois dois se omita, retorna a linha i ou a coluna j.'''
         if j==None: #retornando só a linha
@@ -134,7 +140,7 @@ class matriz:
     def __truediv__(self,other):
 
         if type(self) == matriz and type(other) == matriz:
-            return  self * inverter(other)
+            return  self * other.inversa()
 
         else:
             def _dividir(_vetor1,k):
