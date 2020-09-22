@@ -43,6 +43,14 @@ Retorna o determinante da matriz. Referência: _https://www.blogcyberini.com/201
 
 Calcula o traço (soma dos valors nas diagonais) da matriz.
 
+**lin(self,vetor,i):**
+
+Insere o vetor na linha i.
+
+**col(self,vetor,j):**
+
+Insere o vetor na coluna j. 
+
 **perm(self,i,j)**
 
 Permuta a linha i com a linha j. L_i <-> L_j

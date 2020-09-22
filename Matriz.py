@@ -9,7 +9,7 @@ class matriz:
             else:
                 return 'Matriz grande demais para ser printada.'
         else:
-            return ('\n\n'.join([''.join(['{:6}'.format(item) for item in row]) for row in round(self,2).vetor]))
+            return ('\n\n'.join([''.join(['{:6}'.format(item) for item in row]) for row in self.vetor]))
 
     def __str__(self):
         if self.ordem()[0]>5 or self.ordem()[1]>8:
@@ -18,7 +18,7 @@ class matriz:
             else:
                 return 'Matriz grande demais para ser printada.'
         else:
-            return ('\n\n'.join([''.join(['{:6}'.format(item) for item in row]) for row in ound(self,2).vetor]))
+            return ('\n\n'.join([''.join(['{:6}'.format(item) for item in row]) for row in self.vetor]))
 
 
     def valor(self,i=None,j=None):
@@ -226,6 +226,7 @@ class matriz:
                     soma+=self[i,j]
         return soma
 
+
     def eh_diagonal(self):
         for i in range(len(self.vetor)):
             for j in range(len(self.vetor[0])):
@@ -233,6 +234,24 @@ class matriz:
                     if self.vetor[i][j]!=0:
                         return False
         return True
+
+
+    def lin(self,vetor,i):
+        '''Insere o vetor na linha i.'''
+        if len(vetor)!= self.ordem()[1]:
+        	raise ValueError('Vetor de tamanho incompatível.')
+        	 
+        self.vetor.insert(i-1,vetor)
+      
+        
+    def col(self,vetor,j):
+        '''Insere o vetor na coluna j.'''
+        if len(vetor) != self.ordem()[0]:
+        	raise ValueError('Vetor de tamanho incompatível.')
+        index=0
+        for i in self.vetor:
+            i.insert(j-1,vetor[index])
+            index+=1
 
 
     def perm(self,i,j):
@@ -251,7 +270,7 @@ class matriz:
         for valor in L_j:
             L[i-1][coluna]=valor
             coluna+=1
-
+                        
         return matriz(L)
 
 
@@ -294,8 +313,8 @@ class matriz:
         L=self.vetor
         diminuir(L[i-1],L[i2-1])
         return matriz(L)
-
-
+        
+    
 #funções fora da classe
 
 def Matriz(A,_float=False,sep_linhas=';',sep_col=','):
