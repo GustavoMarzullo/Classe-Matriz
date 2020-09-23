@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 class matriz:
     def __init__(self,vetor):
         self.vetor=vetor
@@ -184,7 +186,7 @@ class matriz:
 
     def det(self):
         '''Retorna a determinante da matriz A.\nReferência: https://www.blogcyberini.com/2017/10/determinantes-via-triangularizacao.html'''
-        A=[[coluna for coluna in linha] for linha in self.vetor] #evitar "reference share"
+        A=[[Decimal(coluna) for coluna in linha] for linha in self.vetor] #evitar "reference share"
         A=matriz(A)
         if A.ordem()[0] != A.ordem()[1]:
             raise ValueError ('Matriz não é quadrada.')
@@ -215,7 +217,12 @@ class matriz:
         det = 1
         for q in range(1,n+1):
             det = det*A[q,q]
-        return p*det
+        resultado=float(p*det)
+        if resultado<1e-5:
+            return 0
+        else:
+            return resultado 
+
 
     def tr(self):
         '''Calcula o traço da matriz.'''
