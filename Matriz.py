@@ -410,7 +410,7 @@ def Int(self):
 
 
 def cramer(self):
-    '''Resolve o sistema de equações lineares.'''
+    '''Resolve o sistema de equações lineares pelo método de Cramer.'''
     if type(self)!=matriz:
         raise ValueError('Objeto inserido não é uma matriz.')
     
@@ -428,7 +428,6 @@ def cramer(self):
         
         A_i=matriz(A_i)
         det_A=A_i.det()
-        
         for i in range(1,m+1): #botando os valores de b na coluna j
             A_i[i,j]=b[i-1]
         
@@ -441,3 +440,26 @@ def cramer(self):
         print('x'+str(resultado),'=',round(valor,3))
         
     return resultados
+
+def miv(self):
+    '''Resolve o sistema de equações lineares pelo método da matriz inversa.'''
+    m,n=self.ordem()[0],self.ordem()[1]
+    b=[] #Ax=b
+    for i in range(1,m+1):
+        b.append(self[i,n])
+    b=matriz([b])
+    b=b.T()
+    
+    A=[[coluna for coluna in linha] for linha in self.vetor]
+    for i in range(m): #tirando a última coluna
+        del A[i][n-1]
+    resultado= matriz(A).inversa()*b
+    resultado=resultado.T().vetor[0]
+    for valor in range(len(resultado)):
+        print('x'+str(valor+1),'=',round(resultado[valor],3))
+    return resultado
+    
+
+
+
+

@@ -110,7 +110,7 @@ Converte uma matriz de float em uma matriz de int.
 
 **cramer(self):**
 
-Resolve o sistema de equações lineares.
+Resolve o sistema de equações lineares pelo método de Cramer.
 
 a11*x1, a12*x2,...,a1n*xn=b1
 	.
@@ -118,3 +118,8 @@ a11*x1, a12*x2,...,a1n*xn=b1
 	.
 	
 an1*x1,an2*x2,...,ann*xn=bn
+
+
+**miv(self):**
+
+Resolve o sistema de equações lineares pelo método da matriz inversa.
