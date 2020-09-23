@@ -1,7 +1,7 @@
 # Classe-Matriz
 Em construção.
 
-Não é nada de novo que estou fazendo. Estou apenas treinando.
+Não é nada de novo que estou fazendo. Estou apenas treinando. Meu objetivo inical era não usar nenhuma biblioteca do Python. Mas fui obrigado a usar a Decimal por erros de arredondamento acumulados na função para calcular determinante.
 
 ## Como usar:
     1. Acesse a pasta onde se encontra o arquivo Matriz.py
