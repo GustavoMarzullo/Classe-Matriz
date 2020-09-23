@@ -346,7 +346,7 @@ class matriz:
             
         A=matriz([[coluna for coluna in linha] for linha in self.vetor])
         Ct=A.mcofat().T()
-        return round(Ct * 1/determinante,2)
+        return Ct * 1/determinante
     
     
 #funções fora da classe
