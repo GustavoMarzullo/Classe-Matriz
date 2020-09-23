@@ -343,9 +343,7 @@ class matriz:
         determinante= self.det()
         if determinante== 1:
             raise ValueError('Matriz não invertível.')
-            
-        A=matriz([[coluna for coluna in linha] for linha in self.vetor])
-        Ct=A.mcofat().T()
+        Ct=self.mcofat().T()
         return Ct * 1/determinante
     
     
@@ -373,13 +371,17 @@ def Matriz(A,_float=False,sep_linhas=';',sep_col=','):
         converter(i,_float)
     return matriz(L)
 
-def nula(m,n):
+def nula(m,n=None):
     '''Cria uma matriz nula de ordem m x n.'''
+    if n==None:
+    	n=m
     vetor=[[0 for coluna in range(n)] for linha in range(m)] #evitar "reference share"
     return matriz(vetor)
 
-def I(m,n):
+def I(m,n=None):
     '''Cria uma matriz identidade de ordem m,n.'''
+    if n==None:
+    	n=m
     identidade=nula(m,n)
     for i in range(1,m+1):
         for j in range(1,n+1):
@@ -399,7 +401,7 @@ def diagonal(vetor):
     return A
 
 def Int(self):
-    '''Tranformar uma matriz de float em uma matriz de int.'''
+    '''Tranforma uma matriz de float em uma matriz de int.'''
     m,n=self.ordem()
     for i in range(1,m+1):
         for j in range(1,n+1):
