@@ -1,5 +1,3 @@
-from decimal import Decimal
-
 class matriz:
     def __init__(self,vetor):
         self.vetor=vetor
@@ -164,6 +162,21 @@ class matriz:
         return True
 
 
+    def __pow__(self,other):
+        if type(other)!=int:
+            raise ValueError('Expoente não natural')
+        if self.ordem()[0]!=self.ordem()[1]:
+            raise ValueError('Matriz precisa ser quadrada')
+        if other==0:
+            return I(self.ordem()[0])
+        else:
+            A=matriz([[coluna for coluna in linha] for linha in self.vetor])
+            resultado=I(self.ordem()[0])
+            for _ in range(other):
+                resultado*=A
+            return resultado  
+
+
     def T(self):
         '''Transpõe a matriz.'''
         transposta=[]
@@ -186,7 +199,7 @@ class matriz:
 
     def det(self):
         '''Retorna a determinante da matriz A.\nReferência: https://www.blogcyberini.com/2017/10/determinantes-via-triangularizacao.html'''
-        A=[[Decimal(coluna) for coluna in linha] for linha in self.vetor] #evitar "reference share"
+        A=[[coluna for coluna in linha] for linha in self.vetor] #evitar "reference share"
         A=matriz(A)
         if A.ordem()[0] != A.ordem()[1]:
             raise ValueError ('Matriz não é quadrada.')
@@ -217,12 +230,7 @@ class matriz:
         det = 1
         for q in range(1,n+1):
             det = det*A[q,q]
-        resultado=float(p*det)
-        if resultado<1e-5:
-            return 0
-        else:
-            return resultado 
-
+        return p*det
 
     def tr(self):
         '''Calcula o traço da matriz.'''
@@ -465,8 +473,3 @@ def miv(self):
     for valor in range(len(resultado)):
         print('x'+str(valor+1),'=',round(resultado[valor],3))
     return resultado
-    
-
-
-
-
