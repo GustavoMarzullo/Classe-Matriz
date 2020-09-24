@@ -356,7 +356,7 @@ class matriz:
     def inversa(self):
         '''Retorna a matiz inversa.'''
         determinante= self.det()
-        if determinante== 1:
+        if determinante== 0:
             raise ValueError('Matriz não invertível.')
         Ct=self.mcofat().T()
         return Ct * 1/determinante
