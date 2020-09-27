@@ -424,12 +424,15 @@ def Int(self):
     return self
 
 
-def cramer(self):
+def cramer(self,precisao=5):
     '''Resolve o sistema de equações lineares pelo método de Cramer.'''
     if type(self)!=matriz:
         raise ValueError('Objeto inserido não é uma matriz.')
     
     m,n=self.ordem()[0],self.ordem()[1]
+    
+    if m+1!=n:
+    	raise ValueError('Não foi inserido um sistema de equações.')
     
     b=[] #Ax=b
     for i in range(1,m+1):
@@ -451,14 +454,17 @@ def cramer(self):
     resultados=[]
     for resultado in range(1,n):
         valor=x_i(self,resultado)
-        resultados.append(valor)
-        print('x'+str(resultado),'=',round(valor,3))
+        resultados.append(round(valor,precisao))
+        print('x'+str(resultado),'=',round(valor,precisao))
         
     return resultados
 
-def miv(self):
+def miv(self,precisao=5):
     '''Resolve o sistema de equações lineares pelo método da matriz inversa.'''
     m,n=self.ordem()[0],self.ordem()[1]
+    if m+1!=n:
+    	raise ValueError('Não foi inserido um sistema de equações.')
+    
     b=[] #Ax=b
     for i in range(1,m+1):
         b.append(self[i,n])
@@ -471,5 +477,5 @@ def miv(self):
     resultado= matriz(A).inversa()*b
     resultado=resultado.T().vetor[0]
     for valor in range(len(resultado)):
-        print('x'+str(valor+1),'=',round(resultado[valor],3))
-    return resultado
+        print('x'+str(valor+1),'=',round(resultado[valor],precisao))
+    return list(map(lambda x: round(x,precisao),resultado))
