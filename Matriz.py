@@ -2,8 +2,9 @@ class matriz:
     def __init__(self,vetor):
         self.vetor=vetor
 
+
     def __repr__(self):
-        if self.ordem()[0]>5 or self.ordem()[1]>8:
+        if self.ordem()[0]>10 or self.ordem()[1]>10:
             if self.ordem()[0]<=30 and self.ordem()[1]<=30:
                 return str(self.vetor)
             else:
@@ -11,8 +12,9 @@ class matriz:
         else:
             return ('\n\n'.join([''.join(['{:6}'.format(item) for item in row]) for row in self.vetor]))
 
+
     def __str__(self):
-        if self.ordem()[0]>5 or self.ordem()[1]>8:
+        if self.ordem()[0]>10 or self.ordem()[1]>10:
             if self.ordem()[0]<=30 and self.ordem()[1]<=30:
                 return str(self.vetor)
             else:
@@ -95,7 +97,6 @@ class matriz:
             for i in range(len(_matriz)):
                 _matriz[i]=_subtrair(_matriz[i],other.vetor[i])
             return matriz(_matriz)
-
 
 
     def __mul__(self,other):
@@ -232,6 +233,7 @@ class matriz:
             det = det*A[q,q]
         return p*det
 
+
     def tr(self):
         '''Calcula o traço da matriz.'''
         soma=0
@@ -274,7 +276,7 @@ class matriz:
         L_i=self.valor(i=i) #pegando valor da linha
         L_j=self.valor(i=j)
         L=[[coluna for coluna in linha] for linha in self.vetor]
-
+        
         #trocando as linhas
         coluna=0
         for valor in L_i:
@@ -423,7 +425,6 @@ def Int(self):
             self[i,j]=int(self[i,j])
     return self
 
-
 def cramer(self,precisao=5):
     '''Resolve o sistema de equações lineares pelo método de Cramer.'''
     if type(self)!=matriz:
@@ -479,3 +480,6 @@ def miv(self,precisao=5):
     for valor in range(len(resultado)):
         print('x'+str(valor+1),'=',round(resultado[valor],precisao))
     return list(map(lambda x: round(x,precisao),resultado))
+
+A=Matriz('1,2,3;4,5,6;7,8,0')
+print(round(A.det(),2))
