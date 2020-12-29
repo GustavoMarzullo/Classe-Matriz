@@ -352,7 +352,7 @@ class matriz:
         for i in range(1,m+1):
             for j in range(1,n+1):
                 A[i,j]=self.cofat(i,j)
-        return round(A,2)
+        return A
     
     
     def inversa(self):
@@ -481,5 +481,3 @@ def miv(self,precisao=5):
         print('x'+str(valor+1),'=',round(resultado[valor],precisao))
     return list(map(lambda x: round(x,precisao),resultado))
 
-A=Matriz('1,2,3;4,5,6;7,8,0')
-print(round(A.det(),2))
